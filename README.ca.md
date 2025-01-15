@@ -78,18 +78,27 @@ Veure [CONTRIBUTING.md][contributing]
 
 Aquest fitxer README està disponible en:
 
-- [Arabic (العربية)](README.ar.md)
+- [&lrm;العربية](README.ar.md)
+- [Беларуская](README.be.md)
+- [български](README.bg.md)
 - [Català](README.ca.md)
+- [Čeština](README.cs.md)
+- [Dansk](README.da.md)
 - [Deutsch](README.de.md)
 - [English](README.md)
 - [Esperanto](README.eo.md)
 - [Español](README.es.md)
-- [Persian (فارسی)](README.fa.md)
+- [Euskera](README.eu.md)
+- [فارسی](README.fa.md)
 - [Français](README.fr.md)
+- [Ελληνικά](README.gr.md)
+- [Srpsko-Hrvatski (BCMS)](README.hbs.md)
 - [עברית](README.he.md)
+- [Magyar](README.hu.md)
 - [Indonesia](README.id.md)
 - [Italiano](README.it.md)
 - [日本語](README.ja.md)
+- [ភាសាខ្មែរ](README.kh.md)
 - [한국어](README.ko.md)
 - [Nederlands](README.nl.md)
 - [Polski](README.pl.md)
@@ -100,8 +109,10 @@ Aquest fitxer README està disponible en:
 - [Türkçe](README.tr.md)
 - [Tiếng Việt](README.vi.md)
 - [Українська](README.uk.md)
+- [O'zbek](README.uz.md)
 - [简体中文](README.zh-CN.md)
 - [繁體中文](README.zh-TW.md)
+- [香港繁體](README.zh-HK.md)
 
 [![Desenvolupat per Vercel](public/powered-by-vercel.svg)][vercel]
 

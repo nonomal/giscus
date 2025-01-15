@@ -1,19 +1,29 @@
-import { InstallationAccessToken } from '../../lib/types/supabase';
-import { SUPABASE_INSTALLATION_ACCESS_TOKENS_URL, SUPABASE_KEY } from '../config';
+import { InstallationAccessToken } from '../../lib/types/cache';
+import { env } from '../../lib/variables';
+import { sign } from 'jsonwebtoken';
+
+function getJWT() {
+  const now = Math.floor(Date.now() / 1000);
+  const payload = {
+    role: env.postgrest_role,
+    // JWT expiration time (10 minute maximum)
+    exp: now + 10 * 60,
+  };
+  return sign(payload, env.postgrest_secret);
+}
 
 export async function getCachedAccessToken(installationId: number) {
-  if (!SUPABASE_KEY) return '';
+  if (!env.postgrest_url || !env.postgrest_secret) return '';
 
   const params = new URLSearchParams({
     select: '*',
     installation_id: `eq.${installationId}`,
   });
-  const url = `${SUPABASE_INSTALLATION_ACCESS_TOKENS_URL}?${params}`;
+  const url = `${env.postgrest_url}?${params}`;
 
   const response = await fetch(url, {
     headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
+      Authorization: `Bearer ${getJWT()}`,
       Accept: 'application/vnd.pgrst.object+json',
       Range: '0',
     },
@@ -37,12 +47,12 @@ export async function setCachedAccessToken({
   token,
   expires_at,
 }: InstallationAccessToken) {
-  if (!SUPABASE_KEY) return false;
+  if (!env.postgrest_url || !env.postgrest_secret) return false;
 
   const params = new URLSearchParams({
     installation_id: `eq.${installation_id}`,
   });
-  const url = `${SUPABASE_INSTALLATION_ACCESS_TOKENS_URL}?${params}`;
+  const url = `${env.postgrest_url}?${params}`;
 
   const body: InstallationAccessToken = {
     installation_id,
@@ -54,8 +64,7 @@ export async function setCachedAccessToken({
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
+      Authorization: `Bearer ${getJWT()}`,
       Accept: 'application/vnd.pgrst.object+json',
       'Content-Type': 'application/json',
     },

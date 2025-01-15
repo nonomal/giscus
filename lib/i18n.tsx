@@ -23,18 +23,18 @@ type I18nKeysRequireCount<I18Namespace = I18n> = {
   [K in keyof I18Namespace]: K extends `${infer R}_${PluralSuffixes}`
     ? R
     : I18Namespace[K] extends Record<string, unknown>
-    ? {
-        [J in keyof I18Namespace[K]]: J extends PluralSuffixes ? K : never;
-      }[keyof I18Namespace[K]]
-    : never;
+      ? {
+          [J in keyof I18Namespace[K]]: J extends PluralSuffixes ? K : never;
+        }[keyof I18Namespace[K]]
+      : never;
 }[keyof I18Namespace];
 
 type I18nKeysNoCount<I18Namespace = I18n> = {
   [K in keyof I18Namespace]: K extends `${string}_${PluralSuffixes}`
     ? never
     : I18Namespace[K] extends Record<string, unknown>
-    ? never
-    : K;
+      ? never
+      : K;
 }[keyof I18Namespace];
 
 export interface GiscusTranslate<I18Namespace = I18n> {
@@ -44,17 +44,26 @@ export interface GiscusTranslate<I18Namespace = I18n> {
 
 export const availableLanguages = {
   ar: 'العربية',
+  be: 'Беларуская',
+  bg: 'български',
   ca: 'Català',
+  cs: 'Čeština',
+  da: 'Dansk',
   de: 'Deutsch',
   en: 'English',
   eo: 'Esperanto',
   es: 'Español',
+  eu: 'Euskera',
   fa: 'فارسی',
   fr: 'Français',
+  gr: 'Ελληνικά',
+  hbs: 'Srpsko-Hrvatski',
   he: 'עברית',
+  hu: 'Magyar',
   id: 'Indonesia',
   it: 'Italiano',
   ja: '日本語',
+  kh: 'ភាសាខ្មែរ',
   ko: '한국어',
   nl: 'Nederlands',
   pl: 'Polski',
@@ -65,8 +74,10 @@ export const availableLanguages = {
   tr: 'Türkçe',
   vi: 'Việt Nam',
   uk: 'Українська',
+  uz: "O'zbek",
   'zh-CN': '简体中文',
   'zh-TW': '繁體中文',
+  'zh-HK': '香港繁體',
 } as const;
 
 export const rtlLanguages = new Set(['ar', 'fa', 'he']);
@@ -136,20 +147,29 @@ const dateFormat: Intl.DateTimeFormatOptions = {
 
 const dateFormatters: Record<AvailableLanguage, Intl.DateTimeFormat> = {
   ar: new Intl.DateTimeFormat('ar', dateFormat),
+  be: new Intl.DateTimeFormat('be', dateFormat),
+  bg: new Intl.DateTimeFormat('bg', dateFormat),
   ca: new Intl.DateTimeFormat('ca', dateFormat),
+  cs: new Intl.DateTimeFormat('cs', dateFormat),
+  da: new Intl.DateTimeFormat('da', dateFormat),
   de: new Intl.DateTimeFormat('de', dateFormat),
   en: new Intl.DateTimeFormat('en', dateFormat),
   eo: new Intl.DateTimeFormat('eo', dateFormat),
   es: new Intl.DateTimeFormat('es', dateFormat),
+  eu: new Intl.DateTimeFormat('eu', dateFormat),
   fa: new Intl.DateTimeFormat('fa', dateFormat),
   fr: new Intl.DateTimeFormat('fr', dateFormat),
+  gr: new Intl.DateTimeFormat('gr', dateFormat),
+  hbs: new Intl.DateTimeFormat('hbs', dateFormat),
   he: new Intl.DateTimeFormat('he', dateFormat),
+  hu: new Intl.DateTimeFormat('hu', dateFormat),
   id: new Intl.DateTimeFormat('id', dateFormat),
   it: new Intl.DateTimeFormat('it', dateFormat),
   ja: new Intl.DateTimeFormat('ja', dateFormat),
   nl: new Intl.DateTimeFormat('nl', dateFormat),
   pl: new Intl.DateTimeFormat('pl', dateFormat),
   pt: new Intl.DateTimeFormat('pt', dateFormat),
+  kh: new Intl.DateTimeFormat('kh', dateFormat),
   ko: new Intl.DateTimeFormat('ko', dateFormat),
   ro: new Intl.DateTimeFormat('ro', dateFormat),
   ru: new Intl.DateTimeFormat('ru', dateFormat),
@@ -157,8 +177,10 @@ const dateFormatters: Record<AvailableLanguage, Intl.DateTimeFormat> = {
   tr: new Intl.DateTimeFormat('tr', dateFormat),
   vi: new Intl.DateTimeFormat('vi', dateFormat),
   uk: new Intl.DateTimeFormat('uk', dateFormat),
+  uz: new Intl.DateTimeFormat('uz', dateFormat),
   'zh-CN': new Intl.DateTimeFormat('zh-CN', dateFormat),
   'zh-TW': new Intl.DateTimeFormat('zh-TW', dateFormat),
+  'zh-HK': new Intl.DateTimeFormat('zh-HK', dateFormat),
 };
 
 const shortDateFormat: Intl.DateTimeFormatOptions = {
@@ -168,17 +190,26 @@ const shortDateFormat: Intl.DateTimeFormatOptions = {
 
 const shortDateFormatters: Record<AvailableLanguage, Intl.DateTimeFormat> = {
   ar: new Intl.DateTimeFormat('ar', shortDateFormat),
+  be: new Intl.DateTimeFormat('be', shortDateFormat),
+  bg: new Intl.DateTimeFormat('bg', shortDateFormat),
   ca: new Intl.DateTimeFormat('ca', shortDateFormat),
+  cs: new Intl.DateTimeFormat('cs', shortDateFormat),
+  da: new Intl.DateTimeFormat('da', shortDateFormat),
   de: new Intl.DateTimeFormat('de', shortDateFormat),
   en: new Intl.DateTimeFormat('en', shortDateFormat),
   eo: new Intl.DateTimeFormat('eo', shortDateFormat),
   es: new Intl.DateTimeFormat('es', shortDateFormat),
+  eu: new Intl.DateTimeFormat('eu', shortDateFormat),
   fa: new Intl.DateTimeFormat('fa', shortDateFormat),
   fr: new Intl.DateTimeFormat('fr', shortDateFormat),
+  gr: new Intl.DateTimeFormat('gr', shortDateFormat),
+  hbs: new Intl.DateTimeFormat('hbs', shortDateFormat),
   he: new Intl.DateTimeFormat('he', shortDateFormat),
+  hu: new Intl.DateTimeFormat('hu', shortDateFormat),
   id: new Intl.DateTimeFormat('id', shortDateFormat),
   it: new Intl.DateTimeFormat('it', shortDateFormat),
   ja: new Intl.DateTimeFormat('ja', shortDateFormat),
+  kh: new Intl.DateTimeFormat('kh', shortDateFormat),
   ko: new Intl.DateTimeFormat('ko', shortDateFormat),
   nl: new Intl.DateTimeFormat('nl', shortDateFormat),
   pl: new Intl.DateTimeFormat('pl', shortDateFormat),
@@ -189,8 +220,10 @@ const shortDateFormatters: Record<AvailableLanguage, Intl.DateTimeFormat> = {
   tr: new Intl.DateTimeFormat('tr', shortDateFormat),
   vi: new Intl.DateTimeFormat('vi', shortDateFormat),
   uk: new Intl.DateTimeFormat('uk', shortDateFormat),
+  uz: new Intl.DateTimeFormat('uz', shortDateFormat),
   'zh-CN': new Intl.DateTimeFormat('zh-CN', shortDateFormat),
   'zh-TW': new Intl.DateTimeFormat('zh-TW', shortDateFormat),
+  'zh-HK': new Intl.DateTimeFormat('zh-HK', shortDateFormat),
 };
 
 const shortDateYearFormat: Intl.DateTimeFormatOptions = {
@@ -201,17 +234,26 @@ const shortDateYearFormat: Intl.DateTimeFormatOptions = {
 
 const shortDateYearFormatters: Record<AvailableLanguage, Intl.DateTimeFormat> = {
   ar: new Intl.DateTimeFormat('ar', shortDateYearFormat),
+  be: new Intl.DateTimeFormat('be', shortDateYearFormat),
+  bg: new Intl.DateTimeFormat('bg', shortDateYearFormat),
   ca: new Intl.DateTimeFormat('ca', shortDateYearFormat),
+  cs: new Intl.DateTimeFormat('cs', shortDateYearFormat),
+  da: new Intl.DateTimeFormat('da', shortDateYearFormat),
   de: new Intl.DateTimeFormat('de', shortDateYearFormat),
   en: new Intl.DateTimeFormat('en', shortDateYearFormat),
   eo: new Intl.DateTimeFormat('eo', shortDateYearFormat),
   es: new Intl.DateTimeFormat('es', shortDateYearFormat),
+  eu: new Intl.DateTimeFormat('eu', shortDateYearFormat),
   fa: new Intl.DateTimeFormat('fa', shortDateYearFormat),
   fr: new Intl.DateTimeFormat('fr', shortDateYearFormat),
+  gr: new Intl.DateTimeFormat('gr', shortDateYearFormat),
+  hbs: new Intl.DateTimeFormat('hbs', shortDateYearFormat),
   he: new Intl.DateTimeFormat('he', shortDateYearFormat),
+  hu: new Intl.DateTimeFormat('hu', shortDateYearFormat),
   id: new Intl.DateTimeFormat('id', shortDateYearFormat),
   it: new Intl.DateTimeFormat('it', shortDateYearFormat),
   ja: new Intl.DateTimeFormat('ja', shortDateYearFormat),
+  kh: new Intl.DateTimeFormat('kh', shortDateYearFormat),
   ko: new Intl.DateTimeFormat('ko', shortDateYearFormat),
   nl: new Intl.DateTimeFormat('nl', shortDateYearFormat),
   pl: new Intl.DateTimeFormat('pl', shortDateYearFormat),
@@ -222,8 +264,10 @@ const shortDateYearFormatters: Record<AvailableLanguage, Intl.DateTimeFormat> = 
   tr: new Intl.DateTimeFormat('tr', shortDateYearFormat),
   vi: new Intl.DateTimeFormat('vi', shortDateYearFormat),
   uk: new Intl.DateTimeFormat('uk', shortDateYearFormat),
+  uz: new Intl.DateTimeFormat('uz', shortDateYearFormat),
   'zh-CN': new Intl.DateTimeFormat('zh-CN', shortDateYearFormat),
   'zh-TW': new Intl.DateTimeFormat('zh-TW', shortDateYearFormat),
+  'zh-HK': new Intl.DateTimeFormat('zh-HK', shortDateYearFormat),
 };
 
 const relativeTimeFormat: Intl.RelativeTimeFormatOptions = {
@@ -234,17 +278,26 @@ const relativeTimeFormat: Intl.RelativeTimeFormatOptions = {
 
 const relativeTimeFormatters: Record<AvailableLanguage, Intl.RelativeTimeFormat> = {
   ar: new Intl.RelativeTimeFormat('ar', relativeTimeFormat),
+  be: new Intl.RelativeTimeFormat('be', relativeTimeFormat),
+  bg: new Intl.RelativeTimeFormat('bg', relativeTimeFormat),
   ca: new Intl.RelativeTimeFormat('ca', relativeTimeFormat),
+  cs: new Intl.RelativeTimeFormat('cs', relativeTimeFormat),
+  da: new Intl.RelativeTimeFormat('da', relativeTimeFormat),
   de: new Intl.RelativeTimeFormat('de', relativeTimeFormat),
   en: new Intl.RelativeTimeFormat('en', relativeTimeFormat),
   eo: new Intl.RelativeTimeFormat('eo', relativeTimeFormat),
   es: new Intl.RelativeTimeFormat('es', relativeTimeFormat),
+  eu: new Intl.RelativeTimeFormat('eu', relativeTimeFormat),
   fa: new Intl.RelativeTimeFormat('fa', relativeTimeFormat),
   fr: new Intl.RelativeTimeFormat('fr', relativeTimeFormat),
+  gr: new Intl.RelativeTimeFormat('gr', relativeTimeFormat),
+  hbs: new Intl.RelativeTimeFormat('hbs', relativeTimeFormat),
   he: new Intl.RelativeTimeFormat('he', relativeTimeFormat),
+  hu: new Intl.RelativeTimeFormat('hu', relativeTimeFormat),
   id: new Intl.RelativeTimeFormat('id', relativeTimeFormat),
   it: new Intl.RelativeTimeFormat('it', relativeTimeFormat),
   ja: new Intl.RelativeTimeFormat('ja', relativeTimeFormat),
+  kh: new Intl.RelativeTimeFormat('kh', relativeTimeFormat),
   ko: new Intl.RelativeTimeFormat('ko', relativeTimeFormat),
   nl: new Intl.RelativeTimeFormat('nl', relativeTimeFormat),
   pl: new Intl.RelativeTimeFormat('pl', relativeTimeFormat),
@@ -255,8 +308,10 @@ const relativeTimeFormatters: Record<AvailableLanguage, Intl.RelativeTimeFormat>
   tr: new Intl.RelativeTimeFormat('tr', relativeTimeFormat),
   vi: new Intl.RelativeTimeFormat('vi', relativeTimeFormat),
   uk: new Intl.RelativeTimeFormat('uk', relativeTimeFormat),
+  uz: new Intl.RelativeTimeFormat('uz', relativeTimeFormat),
   'zh-CN': new Intl.RelativeTimeFormat('zh-CN', relativeTimeFormat),
   'zh-TW': new Intl.RelativeTimeFormat('zh-TW', relativeTimeFormat),
+  'zh-HK': new Intl.RelativeTimeFormat('zh-HK', relativeTimeFormat),
 };
 
 export function useDateFormatter() {
